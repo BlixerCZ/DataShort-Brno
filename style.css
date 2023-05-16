@@ -1,0 +1,35 @@
+body{
+    padding: 0;
+    margin: 0;
+    background: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3366cc;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+a.button:hover {
+  background-color: #254e80;
+}
+
+
+h1, h2, h3 {
+  color: #333333;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #666666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}

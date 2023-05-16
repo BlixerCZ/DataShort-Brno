@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script>
+            function loadCSV() {
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function () {
+          if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+            var csvData = httpRequest.responseText;
+            var csvArray = csvData.split(',');
+            return csvArray;
+          }
+        };
+
+        httpRequest.open('GET', 'sklo_bile.csv', true);
+        httpRequest.send();
+      }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+  const earthRadius = 6371;
+  const degToRad = Math.PI / 180;
+
+  const latRad1 = lat1 * degToRad;
+  const lonRad1 = lon1 * degToRad;
+  const latRad2 = lat2 * degToRad;
+  const lonRad2 = lon2 * degToRad;
+
+  const latDiff = latRad2 - latRad1;
+  const lonDiff = lonRad2 - lonRad1;
+
+  const a =
+    Math.sin(latDiff / 2) ** 2 +
+    Math.cos(latRad1) * Math.cos(latRad2) * Math.sin(lonDiff / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = earthRadius * c;
+
+  return distance;
+}
+
+        
+const mainPoint = { X: 14.4378005, Y: 50.0755381 };
+const points = loadCSV();
+        
+console.log(points);
+        
+function sortPointsByDistance(mainPoint, points) {
+  const sortedPoints = points.sort((pointA, pointB) => {
+    const distanceA = calculateDistance(
+      mainPoint.lat,
+      mainPoint.lon,
+      pointA.lat,
+      pointA.lon
+    );
+    const distanceB = calculateDistance(
+      mainPoint.lat,
+      mainPoint.lon,
+      pointB.lat,
+      pointB.lon
+    );
+
+    return distanceA - distanceB;
+  });
+
+  return sortedPoints;
+}
+
+
+const sortedPoints = sortPointsByDistance(mainPoint, points);
+console.log(sortedPoints[0][0]["X"],",",sortedPoints[0][0]["Y"]);
+    </script>
+</body>
+</html>

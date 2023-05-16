@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon - Brno</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest-brno.json">
+    <script src="https://api.mapy.cz/loader.js"></script>
+	<script>Loader.load()</script>
+</head>
+
+<body>
+    <h1>Brno</h1>
+    <a href="https://datashort.cz/datashort/hackathon-brno/brnoid" class="button">Brno ID web</a>
+    <br><br>
+    <a href="#" class="button">Biologický odpad</a>
+    <a href="#" class="button">Papír</a>
+    <a href="#" class="button">Plasty, nápojové kartony a hliníkové plechovky od nápojů</a>
+    <a href="#" class="button">Sklo barevné</a>
+    <a href="#" class="button">Sklo bílé</a>
+    <a href="#" class="button">Textil</a>
+    
+    
+<!--    <div id="mapa" style="width:600px; height:400px;"></div>-->
+    
+    <div id="m" style="height:380px"></div>
+    
+    <script>
+        
+    </script>
+<!--    <button onclick="getLocation()">GPS</button>-->
+
+<p id="demo"></p>
+    
+    <script>
+var x = document.getElementById("demo");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "N " + position.coords.latitude +
+  " E " + position.coords.longitude;
+    
+//    var stred = SMap.Coords.fromWGS84(position.coords.longitude, position.coords.latitude);
+//		var mapa = new SMap(JAK.gel("mapa"), stred, 14);
+//		mapa.addDefaultLayer(SMap.DEF_BASE).enable();
+//		mapa.addDefaultControls();	
+//    
+    var center = SMap.Coords.fromWGS84(position.coords.longitude, position.coords.latitude);
+var m = new SMap(JAK.gel("m"), center, 13);
+m.addDefaultLayer(SMap.DEF_BASE).enable();
+m.addDefaultControls();
+
+var layer = new SMap.Layer.Marker();
+m.addLayer(layer);
+layer.enable();
+
+var card = new SMap.Card();
+card.getHeader().innerHTML = "<strong>Nadpis</strong>";
+card.getBody().innerHTML = "Ahoj, já jsem <em>obsah vizitky</em>!";
+
+var options = { 
+    title: "Dobré ráno"
+};
+var marker = new SMap.Marker(center, "myMarker", options);
+marker.decorate(SMap.Marker.Feature.Card, card);
+layer.addMarker(marker);
+    
+}
+        
+        
+        
+        getLocation()
+</script>
+    
+    
+    
+    <script>
+    
+       if('serviceWorker' in navigator){
+           navigator.serviceWorker.register('/serviceWorker.js');
+       }
+    
+    </script>
+</body>
+</html>
