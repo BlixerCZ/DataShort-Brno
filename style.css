@@ -33,3 +33,20 @@ p {
   line-height: 1.5;
   margin-bottom: 15px;
 }
+
+.hider {
+    z-index: 1000;
+    height: 62px;
+    transform: translateY(-79.5px);
+    background-color: #ffffff;
+    position: absolute;
+    width: 100%;
+}
+
+.mapy{
+    text-align: center;
+}
+
+.power-bi{
+    text-align: center;
+}

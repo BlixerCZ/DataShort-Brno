@@ -8,77 +8,117 @@
     <link rel="manifest" href="manifest-brno.json">
     <script src="https://api.mapy.cz/loader.js"></script>
 	<script>Loader.load()</script>
+	<script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  
 </head>
 
 <body>
-    <h1>Brno</h1>
-    <a href="https://datashort.cz/datashort/hackathon-brno/brnoid" class="button">Brno ID web</a>
+<!--    <h1>Brno</h1>-->
+    <img src="logo-DS-Brno2.png" style="max-height: 100px;max-width: 100vw;margin: 0 auto;display: block;"><br>
+<!--    <a href="https://datashort.cz/datashort/hackathon-brno/brnoid" class="button">Brno ID web</a>-->
     <br><br>
-    <a href="#" class="button">Biologický odpad</a>
-    <a href="#" class="button">Papír</a>
-    <a href="#" class="button">Plasty, nápojové kartony a hliníkové plechovky od nápojů</a>
-    <a href="#" class="button">Sklo barevné</a>
-    <a href="#" class="button">Sklo bílé</a>
-    <a href="#" class="button">Textil</a>
+    <div class="mapy">
+        <a href="#" onclick="overlay('biologickyOdpad');" class="button">Biologický odpad</a>
+        <a href="#" onclick="overlay('papir');" class="button">Papír</a>
+        <a href="#" onclick="overlay('plasty');" class="button">Plasty, nápojové kartony a hliníkové plechovky od nápojů</a>
+        <a href="#" onclick="overlay('skloBarevne');" class="button">Sklo barevné</a>
+        <a href="#" onclick="overlay('skloBile');" class="button">Sklo bílé</a>
+        <a href="#" onclick="overlay('textil');" class="button">Textil</a><br><br>
+    </div>
+    
+    
+    <div class="power-bi">
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiN2ZiOGM5ODktZjdhYi00NDRlLTllMzQtMDQwMjExNzJhZjZjIiwidCI6ImZjMTRjNjdlLTk1NWQtNDgzYi04NjJiLTNjYjRjMTJhNWU1MyIsImMiOjl9" target="_blank" class="button">Turisticky zajímavá místa</a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
     
     
 <!--    <div id="mapa" style="width:600px; height:400px;"></div>-->
     
-    <div id="m" style="height:380px"></div>
+    
+    
+    <div id="map"></div>
+    
+    
+<!--    <div id="m" style="height:380px"></div>-->
+    
+   
+<!--   <div class="hider"></div>-->
     
     <script>
-        
-    </script>
+        var type = "";
+    function overlay(typeText) {
+  // Vytvoření nového elementu div
+  var overlay = document.createElement('div');
+
+  // Nastavení stylu pro overlay
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+  overlay.style.zIndex = '9999';
+
+  // Vytvoření elementu pro text
+  var text = document.createElement('p');
+  text.textContent = 'Mapa';
+  text.style.textAlign = 'center';
+  text.style.fontSize = '24px';
+  text.style.marginTop = '100px';
+
+  // Vytvoření elementu pro <div id="m">
+  var divM = document.createElement('div');
+  divM.id = 'm';
+  divM.style.height = '380px';
+
+  // Vytvoření elementu pro křížek
+  var closeBtn = document.createElement('span');
+  closeBtn.textContent = '×';
+  closeBtn.style.position = 'fixed';
+  closeBtn.style.top = '20px';
+  closeBtn.style.right = '20px';
+  closeBtn.style.fontSize = '24px';
+  closeBtn.style.cursor = 'pointer';
+
+  // Funkce pro skrytí overlay
+  function hideOverlay() {
+    document.body.removeChild(overlay);
+  }
+
+  // Přidání event listeneru pro zavření overlay po kliknutí na křížek
+  closeBtn.addEventListener('click', hideOverlay);
+
+  // Přidání elementů do overlay
+  overlay.appendChild(text);
+  overlay.appendChild(divM);
+  overlay.appendChild(closeBtn);
+
+  // Přidání overlay do stránky
+  document.body.appendChild(overlay);
+type = typeText;
+        console.log(typeText);
+        getLocation();
+}
+
+// Vyvolání funkce plasty()
+</script>
 <!--    <button onclick="getLocation()">GPS</button>-->
 
 <p id="demo"></p>
     
     <script>
-var x = document.getElementById("demo");
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
 
-function showPosition(position) {
-  x.innerHTML = "N " + position.coords.latitude +
-  " E " + position.coords.longitude;
-    
-//    var stred = SMap.Coords.fromWGS84(position.coords.longitude, position.coords.latitude);
-//		var mapa = new SMap(JAK.gel("mapa"), stred, 14);
-//		mapa.addDefaultLayer(SMap.DEF_BASE).enable();
-//		mapa.addDefaultControls();	
-//    
-    var center = SMap.Coords.fromWGS84(position.coords.longitude, position.coords.latitude);
-var m = new SMap(JAK.gel("m"), center, 13);
-m.addDefaultLayer(SMap.DEF_BASE).enable();
-m.addDefaultControls();
-
-var layer = new SMap.Layer.Marker();
-m.addLayer(layer);
-layer.enable();
-
-var card = new SMap.Card();
-card.getHeader().innerHTML = "<strong>Nadpis</strong>";
-card.getBody().innerHTML = "Ahoj, já jsem <em>obsah vizitky</em>!";
-
-var options = { 
-    title: "Dobré ráno"
-};
-var marker = new SMap.Marker(center, "myMarker", options);
-marker.decorate(SMap.Marker.Feature.Card, card);
-layer.addMarker(marker);
-    
-}
-        
-        
-        
-        getLocation()
 </script>
-    
+    <script src="map-script.js"></script>
     
     
     <script>
