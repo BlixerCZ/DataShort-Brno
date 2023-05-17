@@ -7,7 +7,6 @@ body{
 
 
 a.button {
-/*  display: inline-block;*/
   display: block;
   padding: 10px 20px;
   background-color: #3366cc;
@@ -58,5 +57,4 @@ p {
 .aa{
     width: 400px;
     max-width: 100%;
-/*    display: inline-block;*/
 }

@@ -28,18 +28,16 @@
       margin-bottom: 8px;
     }
 
-.progress-bar-fill {
-      height: 100%;
-      border-radius: 4px;
-      background-color: #4CAF50;
+    .progress-bar-fill {
+          height: 100%;
+          border-radius: 4px;
+          background-color: #4CAF50;
+        }
+          .progress-bar-1 {
+      height: 5px;
     }
-      .progress-bar-1 {
-  height: 5px;
-}
-
   </style>
-  
-    <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
   <h1>Zaplněnost parkovišť</h1>
@@ -58,7 +56,6 @@
     </tbody>
   </table><br><br>
   <div id="nejblizsi"></div>
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwKEKMCaJz0mzPEuYEnQhpU1TcC8RcQ2A&callback=initMap" async defer></script>-->
   <script src="script-parkoviste.js"></script>
 </body>
 </html>

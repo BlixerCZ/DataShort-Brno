@@ -16,9 +16,7 @@
 </head>
 
 <body>
-<!--    <h1>Brno</h1>-->
     <img src="logo-DS-Brno2.png" style="max-height: 100px;max-width: calc(100vw - 20px);margin: 0 auto;display: block;">
-<!--    <a href="https://datashort.cz/datashort/hackathon-brno/brnoid" class="button">Brno ID web</a>-->
     <br><br>
     
     <div class="mapy">
@@ -37,52 +35,43 @@
         <br><br></div>
     </div>
     <script>
-    function overlay2() {
-  // Vytvoření nového elementu div pro overlay
-  var overlay2 = document.createElement('div');
+        function overlay2() {
+        var overlay2 = document.createElement('div');
 
-    var content = '';    
-        
-  // Nastavení stylu pro overlay
-  overlay2.style.position = 'fixed';
-  overlay2.style.top = '0';
-  overlay2.style.left = '0';
-  overlay2.style.width = '100%';
-  overlay2.style.height = '100%';
-  overlay2.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-  overlay2.style.zIndex = '9999';
+        var content = '';    
 
-  // Vytvoření elementu pro text
-  var text2 = document.createElement('p');
-  text2.innerHTML = document.getElementById('invisible').innerHTML;
-  text2.style.textAlign = 'center';
-  text2.style.fontSize = '24px';
-  text2.style.marginTop = '100px';
+          overlay2.style.position = 'fixed';
+          overlay2.style.top = '0';
+          overlay2.style.left = '0';
+          overlay2.style.width = '100%';
+          overlay2.style.height = '100%';
+          overlay2.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+          overlay2.style.zIndex = '9999';
 
-  // Vytvoření elementu pro křížek
-  var closeBtn2 = document.createElement('span');
-  closeBtn2.textContent = '×';
-  closeBtn2.style.position = 'fixed';
-  closeBtn2.style.top = '20px';
-  closeBtn2.style.right = '20px';
-  closeBtn2.style.fontSize = '34px';
-  closeBtn2.style.cursor = 'pointer';
+          var text2 = document.createElement('p');
+          text2.innerHTML = document.getElementById('invisible').innerHTML;
+          text2.style.textAlign = 'center';
+          text2.style.fontSize = '24px';
+          text2.style.marginTop = '100px';
 
-  // Funkce pro skrytí overlay
-  function hideOverlay2() {
-    document.body.removeChild(overlay2);
-  }
+          var closeBtn2 = document.createElement('span');
+          closeBtn2.textContent = '×';
+          closeBtn2.style.position = 'fixed';
+          closeBtn2.style.top = '20px';
+          closeBtn2.style.right = '20px';
+          closeBtn2.style.fontSize = '34px';
+          closeBtn2.style.cursor = 'pointer';
 
-  // Přidání event listeneru pro zavření overlay po kliknutí na křížek
-  closeBtn2.addEventListener('click', hideOverlay2);
+          function hideOverlay2() {
+            document.body.removeChild(overlay2);
+          }
 
-  // Přidání elementů do overlay
-  overlay2.appendChild(text2);
-  overlay2.appendChild(closeBtn2);
+          closeBtn2.addEventListener('click', hideOverlay2);
 
-  // Přidání overlay do stránky
-  document.body.appendChild(overlay2);
-}
+          overlay2.appendChild(text2);
+          overlay2.appendChild(closeBtn2);
+          document.body.appendChild(overlay2);
+        }
 
     </script>
     
@@ -96,107 +85,68 @@
         <a href="#" onclick="overlay('parkomaty');" class="button"><div class="aa">Parkomaty</div></a>
         <a href="#" onclick="overlay('nabijecky');" class="button"><div class="aa">Elektrické nabíjecí stanice pro auta</div></a>
     </div>
-    
     <br><br>
     <div class="power-bi">
         <a href="turistickaMista" class="button"><div class="aa">Turisticky zajímavá místa</div></a>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-<!--    <div id="mapa" style="width:600px; height:400px;"></div>-->
-    
-    
-    
     <div id="map"></div>
     
     
-<!--    <div id="m" style="height:380px"></div>-->
-    
-   
-<!--   <div class="hider"></div>-->
-    
     <script>
         var type = "";
-    function overlay(typeText) {
-  // Vytvoření nového elementu div
-  var overlay = document.createElement('div');
+        function overlay(typeText) {
+        var overlay = document.createElement('div');
 
-  // Nastavení stylu pro overlay
-  overlay.style.position = 'fixed';
-  overlay.style.top = '0';
-  overlay.style.left = '0';
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-  overlay.style.zIndex = '9999';
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+        overlay.style.zIndex = '9999';
 
-  // Vytvoření elementu pro text
-  var text = document.createElement('p');
-  text.textContent = 'Mapa';
-  text.style.textAlign = 'center';
-  text.style.fontSize = '24px';
-  text.style.marginTop = '100px';
+        var text = document.createElement('p');
+        text.textContent = 'Mapa';
+        text.style.textAlign = 'center';
+        text.style.fontSize = '24px';
+        text.style.marginTop = '100px';
 
-  // Vytvoření elementu pro <div id="m">
-  var divM = document.createElement('div');
-  divM.id = 'm';
-  divM.style.height = '380px'; 
-        
-  var divOdkaz = document.createElement('div');
-  divOdkaz.id = 'odkaz';
-  divOdkaz.style.height = '380px';
+        var divM = document.createElement('div');
+        divM.id = 'm';
+        divM.style.height = '380px'; 
 
-  // Vytvoření elementu pro křížek
-  var closeBtn = document.createElement('span');
-  closeBtn.textContent = '×';
-  closeBtn.style.position = 'fixed';
-  closeBtn.style.top = '20px';
-  closeBtn.style.right = '20px';
-  closeBtn.style.fontSize = '34px';
-  closeBtn.style.cursor = 'pointer';
+        var divOdkaz = document.createElement('div');
+        divOdkaz.id = 'odkaz';
+        divOdkaz.style.height = '380px';
+  
+        var closeBtn = document.createElement('span');
+        closeBtn.textContent = '×';
+        closeBtn.style.position = 'fixed';
+        closeBtn.style.top = '20px';
+        closeBtn.style.right = '20px';
+        closeBtn.style.fontSize = '34px';
+        closeBtn.style.cursor = 'pointer';
+  
+        function hideOverlay() {
+          document.body.removeChild(overlay);
+        }
+  
+        closeBtn.addEventListener('click', hideOverlay);
 
-  // Funkce pro skrytí overlay
-  function hideOverlay() {
-    document.body.removeChild(overlay);
-  }
+        overlay.appendChild(text);
+        overlay.appendChild(divM);
+        overlay.appendChild(divOdkaz);
+        overlay.appendChild(closeBtn);
 
-  // Přidání event listeneru pro zavření overlay po kliknutí na křížek
-  closeBtn.addEventListener('click', hideOverlay);
-
-  // Přidání elementů do overlay
-  overlay.appendChild(text);
-  overlay.appendChild(divM);
-  overlay.appendChild(divOdkaz);
-  overlay.appendChild(closeBtn);
-
-  // Přidání overlay do stránky
-  document.body.appendChild(overlay);
-type = typeText;
-        console.log(typeText);
+        document.body.appendChild(overlay);
+        type = typeText;
         getLocation();
-}
-
-// Vyvolání funkce plasty()
-</script>
-<!--    <button onclick="getLocation()">GPS</button>-->
-<br><br>
-<p id="demo"></p>
-    
-    <script>
-
-</script>
+        }
+    </script>
+    <br><br>
+    <p id="demo"></p>
     <script src="map-script.js"></script>
-    
-    
     <script>
-    
        if('serviceWorker' in navigator){
            navigator.serviceWorker.register('/serviceWorker.js');
        }
