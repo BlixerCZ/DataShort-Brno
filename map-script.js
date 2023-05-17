@@ -118,8 +118,10 @@ const sortedPoints = sortCoordinatesByDistance(mainPoint, typeArray);
     var b = position.coords.longitude;
     var c = sortedPoints[0]["Y"];
     var d = sortedPoints[0]["X"];
+    var c2 = sortedPoints[1]["Y"];
+    var d2 = sortedPoints[1]["X"];
         
-    document.getElementById('odkaz').innerHTML = '<div class="mapy"><a href="https://www.google.com/maps/dir/'+a+','+b+'/'+c+','+d+'" target="_blank" class="button">Navigovat pomocí Mapy Google</a></div>';
+    document.getElementById('odkaz').innerHTML = '<div class="mapy"><a href="https://www.google.com/maps/dir/'+a+','+b+'/'+c+','+d+'" target="_blank" class="button">Navigovat pomocí Mapy Google</a></div><br><div class="mapy"><a href="https://www.google.com/maps/dir/'+a+','+b+'/'+c2+','+d2+'" target="_blank" class="button">Navigovat na 2. nejbližší</a></div>';
         
     var center = SMap.Coords.fromWGS84(sortedPoints[0]["X"], sortedPoints[0]["Y"]);
     var m = new SMap(JAK.gel("m"), center, 13);
@@ -140,5 +142,24 @@ const sortedPoints = sortCoordinatesByDistance(mainPoint, typeArray);
     var marker = new SMap.Marker(center, "myMarker", options);
     marker.decorate(SMap.Marker.Feature.Card, card);
     layer.addMarker(marker);
+        
+    var center2 = SMap.Coords.fromWGS84(sortedPoints[1]["X"], sortedPoints[1]["Y"]);
+
+    var card2 = new SMap.Card();
+    card2.getHeader().innerHTML = "<strong>Kontejner</strong>";
+    card2.getBody().innerHTML = "2. nejbližší kontejner k Vaší poloze";
+
+    var options2 = { 
+        title: "2. nejbližší kontejner"
+    };
+    var marker = new SMap.Marker(center, "myMarker", options);
+    var marker2 = new SMap.Marker(center2, "myMarker2", options2);
+    marker.decorate(SMap.Marker.Feature.Card, card);
+    marker2.decorate(SMap.Marker.Feature.Card, card2);
+//    layer.addMarker(marker);
+    layer.addMarker(marker2);
+    
+    
+    
      }   
 getLocation()
