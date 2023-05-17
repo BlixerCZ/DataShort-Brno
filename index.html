@@ -2,11 +2,12 @@
 <html lang="cs">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Hackathon - Brno</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest-brno.json">
     <script src="https://api.mapy.cz/loader.js"></script>
+    <link rel="shortcut icon" href="favicon.ico" />
 	<script>Loader.load()</script>
 	<script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
     <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
@@ -16,21 +17,89 @@
 
 <body>
 <!--    <h1>Brno</h1>-->
-    <img src="logo-DS-Brno2.png" style="max-height: 100px;max-width: 100vw;margin: 0 auto;display: block;"><br>
+    <img src="logo-DS-Brno2.png" style="max-height: 100px;max-width: calc(100vw - 20px);margin: 0 auto;display: block;">
 <!--    <a href="https://datashort.cz/datashort/hackathon-brno/brnoid" class="button">Brno ID web</a>-->
     <br><br>
+    
     <div class="mapy">
-        <a href="#" onclick="overlay('biologickyOdpad');" class="button">Biologický odpad</a>
-        <a href="#" onclick="overlay('papir');" class="button">Papír</a>
-        <a href="#" onclick="overlay('plasty');" class="button">Plasty, nápojové kartony a hliníkové plechovky od nápojů</a>
-        <a href="#" onclick="overlay('skloBarevne');" class="button">Sklo barevné</a>
-        <a href="#" onclick="overlay('skloBile');" class="button">Sklo bílé</a>
-        <a href="#" onclick="overlay('textil');" class="button">Textil</a><br><br>
+        <a href="#" onclick="overlay2();" class="button"><div class="aa">Kontejnery</div></a>
+        <a href="#" onclick="overlay('odpad');" class="button"><div class="aa">Sběrná střediska odpadu</div></a>
+    </div><br><br>
+    <div id="invisible" style="display: none">
+        
+        <div class="mapy">
+        <a href="#" onclick="overlay('biologickyOdpad');" class="button"><div class="aa">Biologický odpad</div></a>
+        <a href="#" onclick="overlay('papir');" class="button"><div class="aa">Papír</div></a>
+        <a href="#" onclick="overlay('plasty');" class="button"><div class="aa">Plasty, nápojové kartony a hliníkové plechovky od nápojů</div></a>
+        <a href="#" onclick="overlay('skloBarevne');" class="button"><div class="aa">Sklo barevné</div></a>
+        <a href="#" onclick="overlay('skloBile');" class="button"><div class="aa">Sklo bílé</div></a>
+        <a href="#" onclick="overlay('textil');" class="button"><div class="aa">Textil</div></a>
+        <br><br></div>
+    </div>
+    <script>
+    function overlay2() {
+  // Vytvoření nového elementu div pro overlay
+  var overlay2 = document.createElement('div');
+
+    var content = '';    
+        
+  // Nastavení stylu pro overlay
+  overlay2.style.position = 'fixed';
+  overlay2.style.top = '0';
+  overlay2.style.left = '0';
+  overlay2.style.width = '100%';
+  overlay2.style.height = '100%';
+  overlay2.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+  overlay2.style.zIndex = '9999';
+
+  // Vytvoření elementu pro text
+  var text2 = document.createElement('p');
+  text2.innerHTML = document.getElementById('invisible').innerHTML;
+  text2.style.textAlign = 'center';
+  text2.style.fontSize = '24px';
+  text2.style.marginTop = '100px';
+
+  // Vytvoření elementu pro křížek
+  var closeBtn2 = document.createElement('span');
+  closeBtn2.textContent = '×';
+  closeBtn2.style.position = 'fixed';
+  closeBtn2.style.top = '20px';
+  closeBtn2.style.right = '20px';
+  closeBtn2.style.fontSize = '34px';
+  closeBtn2.style.cursor = 'pointer';
+
+  // Funkce pro skrytí overlay
+  function hideOverlay2() {
+    document.body.removeChild(overlay2);
+  }
+
+  // Přidání event listeneru pro zavření overlay po kliknutí na křížek
+  closeBtn2.addEventListener('click', hideOverlay2);
+
+  // Přidání elementů do overlay
+  overlay2.appendChild(text2);
+  overlay2.appendChild(closeBtn2);
+
+  // Přidání overlay do stránky
+  document.body.appendChild(overlay2);
+}
+
+    </script>
+    
+    <div class="mapy">
+        <a href="#" onclick="overlay('cyklo');" class="button"><div class="aa">Cykloboxy</div></a>
+        <a href="#" onclick="overlay('bikesharing');" class="button"><div class="aa">Bikesharing</div></a>
+    </div>
+    <br><br>
+    <div class="mapy">
+        <a href="parkoviste" class="button"><div class="aa">Zaplněnost parkovišť a parkovacích domů</div></a>
+        <a href="#" onclick="overlay('parkomaty');" class="button"><div class="aa">Parkomaty</div></a>
+        <a href="#" onclick="overlay('nabijecky');" class="button"><div class="aa">Elektrické nabíjecí stanice pro auta</div></a>
     </div>
     
-    
+    <br><br>
     <div class="power-bi">
-        <a href="https://app.powerbi.com/view?r=eyJrIjoiN2ZiOGM5ODktZjdhYi00NDRlLTllMzQtMDQwMjExNzJhZjZjIiwidCI6ImZjMTRjNjdlLTk1NWQtNDgzYi04NjJiLTNjYjRjMTJhNWU1MyIsImMiOjl9" target="_blank" class="button">Turisticky zajímavá místa</a>
+        <a href="turistickaMista" class="button"><div class="aa">Turisticky zajímavá místa</div></a>
     </div>
     
     
@@ -78,7 +147,11 @@
   // Vytvoření elementu pro <div id="m">
   var divM = document.createElement('div');
   divM.id = 'm';
-  divM.style.height = '380px';
+  divM.style.height = '380px'; 
+        
+  var divOdkaz = document.createElement('div');
+  divOdkaz.id = 'odkaz';
+  divOdkaz.style.height = '380px';
 
   // Vytvoření elementu pro křížek
   var closeBtn = document.createElement('span');
@@ -86,7 +159,7 @@
   closeBtn.style.position = 'fixed';
   closeBtn.style.top = '20px';
   closeBtn.style.right = '20px';
-  closeBtn.style.fontSize = '24px';
+  closeBtn.style.fontSize = '34px';
   closeBtn.style.cursor = 'pointer';
 
   // Funkce pro skrytí overlay
@@ -100,6 +173,7 @@
   // Přidání elementů do overlay
   overlay.appendChild(text);
   overlay.appendChild(divM);
+  overlay.appendChild(divOdkaz);
   overlay.appendChild(closeBtn);
 
   // Přidání overlay do stránky
@@ -112,7 +186,7 @@ type = typeText;
 // Vyvolání funkce plasty()
 </script>
 <!--    <button onclick="getLocation()">GPS</button>-->
-
+<br><br>
 <p id="demo"></p>
     
     <script>
